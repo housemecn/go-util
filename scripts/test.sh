@@ -1,5 +1,7 @@
 #!/bin/bash
+# shellcheck disable=SC2086
 shell_dir=$(dirname $0)
+# shellcheck disable=SC2086
 cd ${shell_dir}
 
 cd ..

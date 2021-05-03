@@ -12,13 +12,13 @@ import (
 )
 
 // ImageType 探测图片的类型
-// imgbytes 图片字节数组
-func ImageType(imgbytes []byte) string {
-	return http.DetectContentType(imgbytes)
+// bytes 图片字节数组
+func ImageType(bytes []byte) string {
+	return http.DetectContentType(bytes)
 }
 
-func decodeBytesCreateFile(imgbytes []byte, filepath string) (image.Image, *os.File, error) {
-	img, _, err := image.Decode(bytes.NewReader(imgbytes))
+func decodeBytesCreateFile(imgBytes []byte, filepath string) (image.Image, *os.File, error) {
+	img, _, err := image.Decode(bytes.NewReader(imgBytes))
 	if err != nil {
 		return nil, nil, err
 	}
@@ -33,11 +33,11 @@ func decodeBytesCreateFile(imgbytes []byte, filepath string) (image.Image, *os.F
 // BytesToImage []byte生成图片
 // imgbytes 图片[]byte数组
 // filepath 文件路径名称
-func BytesToImage(imgbytes []byte, filepath string) error {
+func BytesToImage(imgBytes []byte, filepath string) error {
 
-	switch ImageType(imgbytes) {
+	switch ImageType(imgBytes) {
 	case "image/png":
-		img, fd, err := decodeBytesCreateFile(imgbytes, filepath)
+		img, fd, err := decodeBytesCreateFile(imgBytes, filepath)
 		if err != nil {
 			return err
 		}
@@ -47,7 +47,7 @@ func BytesToImage(imgbytes []byte, filepath string) error {
 			return err
 		}
 	case "image/jpeg":
-		img, fd, err := decodeBytesCreateFile(imgbytes, filepath)
+		img, fd, err := decodeBytesCreateFile(imgBytes, filepath)
 		if err != nil {
 			return err
 		}

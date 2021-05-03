@@ -24,7 +24,7 @@ func BytesToFile(data []byte, filepath string) error {
     if err != nil {
         return err
     }
-    writer.Flush()
+    _ = writer.Flush()
     return nil
 }
 
